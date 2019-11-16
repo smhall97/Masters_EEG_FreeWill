@@ -1,6 +1,6 @@
 """
 Author: Siobhan Hall (edited by Ben Wolfaardt)
-Based off the Libet experiment code by Mikkel C. Vinding
+Based off the Libet experiment code by Mikkel C. Vinding. The Github repo is available at the following link: https://github.com/mcvinding/clock_test
 """
 
 import mne
