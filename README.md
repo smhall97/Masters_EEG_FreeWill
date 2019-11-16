@@ -12,22 +12,8 @@ Libet_information:
 - It is possible for a set to have <11 trials, as if the person took long to decide, the programme would run of memory.
 - Collectively, each participant would have 110 trials at least. 
 
-Median_filter
-- This is a pre-processing step for the gaze data
-- The filter will be applied to the data in a numpy array format. 
+- The code for the Libet experiment can be found in the following repository, by Mikkel C. Vinding: https://github.com/mcvinding/clock_test
 
-Fixation Identification Algorithm 
-- This will be the code to iterate over the eye tracking data looking for fixations within each cycle.
-- This is based on the assumption that there are correlations between the eyes (fixations, pupil changes, gaze etc.) that 
-  that correspond to changes in cognition / attention.
-- These data are collected using the Tobii Pro SDK. Documentation (Python 2.7 and Python  3.5; Matlab 2016A & B, 2015B; C; 
-  Unity on Windows specifically regarding this can be found on their website: https://developer.tobii.com/tobii-pro-sdk/
-
-
-Separate_gaze:
-- This is the pre-processing stage for the fixation identification algorithm described above. 
-Separate_pupil:
-- Pupil dilation can be considered too noisy for reliable results, so at this point I am unsure if this will even be used in the overall project. 
 
 SET to CSV
 - All eeglab files are saved as .set files.
@@ -35,24 +21,16 @@ SET to CSV
 a) .set to .csv (each row in the csv corresponds to a channel, and each column will relate to one time point [making up the length of the epoch])
 b) From the .csv file to a .pickle format, but this will occur in a separate script, i.e. "CSV to pickle". 
 
-csv_pickle
-- This is the last data preparation phase before inputting the data into the model for training (in "DeepLearning_EEG")
-- It is important to ensure these files are set up correctly. 
--This file will be deleted - as this is only the pseudocode. The exectuable code is saved under "new_pickling_v2"
 
-new_pickling_v2
-- This takes the csv files for various stages of data preparation. Data preparation is the stage before the models.
-- The stages are outlined as follows:
-    a) Separated based on person (code) and decision ("left" / "right")
-    b) Separate each window / epoch into frames: frames are based on % values to account for variable window sizes
-    c) There are two ways to send the data through the model. These are as follows:
-        i] Separated = separated on a person level = train on some participants; test test on others
-        ii] Grouped = mixed between persons; separation on trial level: train on some, test on some 
-
-DeepLearning_EEG
-- This is very much in the initial stages. 
-- The intitial model will be a convolution neural network.
-- The model's task is to classify the action (L/R) at each time window preceding the action using the EEG data. 
+CNN_model_final 
+- As per DL convention, the data are split into a training, validation and test sets. 
+- This code splits the data into the three subsets based on two methods:
+    a) Separated: some participants are placed in the training set, other data in the validation set and the remainign participants are placed in the test sets. 
+    b) All the data are pooled before being randomly split into the three subsets. 
+- The model's task is to classify the action (L/R) at each time window preceding the action using the subconscious EEG data. 
+- The subconscious EEG data can be obtained by creating frames of 25 %, 50 %, 75 % of the epoch that will be fed on the model. 
+- The DL model is used is based on the Convolutional Neural Network (CNN) created by Schirrmeister et al (2017) - Deep Learning with Convolutional Neural Networks 
+for EEG Decoding and Visualisation
 
 
 
