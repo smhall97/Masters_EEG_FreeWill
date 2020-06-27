@@ -1,6 +1,6 @@
 # Masters_EEG_ET
 
-Libet_information: 
+## Libet_information: 
 - This is where the file will have everything running with regards to the triggers and the EEG times
 - Triggers refers to the "M" decision, i.e. did the person choose left or right.
 - W_time is the self-reported moment of conscious awareness using the Libet clock 
@@ -15,14 +15,14 @@ Libet_information:
 - The code for the Libet experiment can be found in the following repository, by Mikkel C. Vinding: https://github.com/mcvinding/clock_test
 
 
-SET to CSV
+## SET to CSV
 - All eeglab files are saved as .set files.
 - There are two steps to get the data file ready for input into the model:
 a) .set to .csv (each row in the csv corresponds to a channel, and each column will relate to one time point [making up the length of the epoch])
 b) From the .csv file to a .pickle format, but this will occur in a separate script, i.e. "CSV to pickle". 
 
 
-CNN_model_final 
+## CNN_model_final 
 - As per DL convention, the data are split into a training, validation and test sets. 
 - This code splits the data into the three subsets based on two methods:
     a) Separated: some participants are placed in the training set, other data in the validation set and the remainign participants are placed in the test sets. 
@@ -33,4 +33,8 @@ CNN_model_final
 for EEG Decoding and Visualisation
 
 
+## plotting ERP
+- replotting the readiness potential from the EEGLAB figure
 
+## eyetrackingscript
+- Accessing the different csvs collected during data collection to access trial times and trigger information
